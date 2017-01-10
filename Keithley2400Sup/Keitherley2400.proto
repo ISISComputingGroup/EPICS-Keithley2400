@@ -1,0 +1,119 @@
+##################################################
+#
+# Protocol File
+#
+# Protocol file for Keithley 2400
+# Diamond Light Source, July 2008
+#
+# NOTES:
+#
+# 
+#
+##################################################
+
+
+##################################################
+# General Settings
+##################################################
+
+Terminator = "\r\n";
+ReplyTimeout = 1000;
+
+
+###################################################
+# Get functions
+###################################################
+
+# /// Read the device ID (only displays 39 chars)
+getID {
+   ExtraInput = Ignore;
+   out "*IDN?";
+   in "%39c";
+}
+
+# /// Read the voltage from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
+getV {
+   ExtraInput = Ignore;
+   out ":READ?";
+   in "%f,%*f,%*f";
+}
+
+# /// Read the current from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
+getI {
+   ExtraInput = Ignore;
+   out ":READ?";
+   in "%*f,%f,%*f";
+}
+
+# /// Read the resistance from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
+getR {
+   ExtraInput = Ignore;
+   out ":READ?";
+   in "%*f,%*f,%f";
+}
+
+#######################################################
+# Set functions
+#######################################################
+
+# /// Reset the defaults
+setRST {
+   out "*RST";
+}
+
+# /// Control the output (ON/OFF)
+setOUTP {
+   out ":OUTP %s";
+}
+
+# /// Control the source operating mode (VOLT/CURR)
+setSO_FUNC {
+   out ":SOUR:FUNC %s";
+}
+
+# /// Control the fixed sourcing mode (VOLT/CURR)
+setSO_MODE {
+   out ":SOUR:%s:MODE FIX";
+}
+
+# /// Control the sourcing range (VOLT/CURR, float range)
+setSO_RANG {
+   out ":SOUR:%(\$1.VAL)s:RANG %f";
+}
+
+# /// Control the sourcing level (VOLT/CURR, float level)
+setSO_LEV {
+   out ":SOUR:%(\$1.VAL)s:LEV %f";
+}
+
+# /// Control the sense operating mode (VOLT/CURR)
+setSE_FUNC {
+   out ":SENS:FUNC %s";
+}
+
+# /// Control the sensing compliance range (VOLT/CURR, float compliance range)
+setSE_PROT {
+   out ":SENS:%(\$1.VAL)s:PROT %f";
+}
+
+# /// Control the sensing measure range (VOLT/CURR, float range)
+setSE_RANG {
+   out ":SENS:%(\$1.VAL)s:RANG %f";
+}
+
+# /// Control the sensing auto range (VOLT/CURR, ON/OFF)
+setSE_RANGAUTO {
+   out ":SENS:%(\$1.VAL)s:RANG:AUTO %s";
+}
+
+
+#############################################################
+# Generic protocol
+############################################################
+
+# /// Use this send any command and get back the response (max 39 chars).
+gen {
+    ExtraInput = Ignore;
+    out "%s"; 
+    in "%39c"
+}
