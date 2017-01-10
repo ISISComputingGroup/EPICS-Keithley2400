@@ -1,2 +1,2 @@
-# EPICS-Keithley2400
-Support module for the Keithley 2400 Source Meter
+# EPICS-Keithley_2400
+Epics support module for a Keithley 2400 Source Meter

@@ -1,0 +1,16 @@
+device(ai,        GPIB_IO, devAiKeithley2400,    "Keithley2400")
+device(ao,        GPIB_IO, devAoKeithley2400,    "Keithley2400")
+device(bi,        GPIB_IO, devBiKeithley2400,    "Keithley2400")
+device(bo,        GPIB_IO, devBoKeithley2400,    "Keithley2400")
+device(event,     GPIB_IO, devEvKeithley2400,    "Keithley2400")
+device(longin,    GPIB_IO, devLiKeithley2400,    "Keithley2400")
+device(longout,   GPIB_IO, devLoKeithley2400,    "Keithley2400")
+device(mbbi,      GPIB_IO, devMbbiKeithley2400 , "Keithley2400")
+device(mbbiDirect,GPIB_IO, devMbbidKeithley2400, "Keithley2400")
+device(mbbo,      GPIB_IO, devMbboKeithley2400,  "Keithley2400")
+device(mbboDirect,GPIB_IO, devMbbodKeithley2400, "Keithley2400")
+device(stringin,  GPIB_IO, devSiKeithley2400,    "Keithley2400")
+device(stringout, GPIB_IO, devSoKeithley2400,    "Keithley2400")
+device(waveform,  GPIB_IO, devWfKeithley2400,    "Keithley2400")
+
+include "asyn.dbd"
