@@ -114,6 +114,6 @@ setSE_RANGAUTO {
 # /// Use this send any command and get back the response (max 39 chars).
 gen {
     ExtraInput = Ignore;
-    out "%s"; 
+    out "%(\$1.VAL)s"; 
     in "%39c"
 }
