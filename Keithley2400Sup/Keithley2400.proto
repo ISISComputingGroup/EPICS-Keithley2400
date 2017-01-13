@@ -66,6 +66,20 @@ getOCOM {
    in "%s";
 }
 
+# /// Get Ohms (resistance) mode AUTO/MANUAL
+getRMODE {
+   ExtraInput = Ignore;
+   out ":SENS:RES:MODE?";
+   in "%s";
+}
+
+# /// Get remote sensing ON/OFF
+getRSENS {
+   ExtraInput = Ignore;
+   out ":SYST:RSEN?";
+   in "%s";
+}
+
 #######################################################
 # Set functions
 #######################################################
@@ -123,6 +137,16 @@ setSE_RANGAUTO {
 # /// Set offset compensation (ON/OFF)
 setOCOM {
    out ":SENS:RES:OCOM %s";
+}
+
+# /// Get Ohms (resistance) mode AUTO/MANUAL
+setRMODE {
+   out ":SENS:RES:MODE %s";
+}
+
+# /// Set remote sensing ON/OFF
+setRSENS {
+   out ":SYST:RSEN %s";
 }
 
 
