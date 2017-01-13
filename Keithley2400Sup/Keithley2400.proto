@@ -52,6 +52,13 @@ getR {
    in "%*f,%*f,%f";
 }
 
+# /// Get the output mode (ON/OFF)
+getOUTP {
+   ExtraInput = Ignore;
+   out ":OUTP?";
+   in "%s";
+}
+
 #######################################################
 # Set functions
 #######################################################
