@@ -59,6 +59,13 @@ getOUTP {
    in "%s";
 }
 
+# /// Get offset compensation (ON/OFF)
+getOCOM {
+   ExtraInput = Ignore;
+   out ":SENS:RES:OCOM?";
+   in "%s";
+}
+
 #######################################################
 # Set functions
 #######################################################
@@ -111,6 +118,11 @@ setSE_RANG {
 # /// Control the sensing auto range (VOLT/CURR, ON/OFF)
 setSE_RANGAUTO {
    out ":SENS:%(\$1.VAL)s:RANG:AUTO %s";
+}
+
+# /// Set offset compensation (ON/OFF)
+setOCOM {
+   out ":SENS:RES:OCOM %s";
 }
 
 
