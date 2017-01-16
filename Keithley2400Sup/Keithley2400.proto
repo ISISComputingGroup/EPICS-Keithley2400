@@ -80,6 +80,13 @@ getRSENS {
    in "%s";
 }
 
+# /// Get resistance sensor range AUTO/MANUAL
+getRSENSAUTO {
+   ExtraInput = Ignore;
+   out ":SENS:RES:RANG:AUTO?";
+   in "%s";
+}
+
 #######################################################
 # Set functions
 #######################################################
@@ -147,6 +154,11 @@ setRMODE {
 # /// Set remote sensing ON/OFF
 setRSENS {
    out ":SYST:RSEN %s";
+}
+
+# /// Set remote sensing ON/OFF
+setRSENSAUTO {
+   out ":SENS:RES:RANG:AUTO %s";
 }
 
 
