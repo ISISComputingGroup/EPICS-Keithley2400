@@ -87,6 +87,13 @@ getRSENSAUTO {
    in "%s";
 }
 
+# /// Get resistance measurement range
+get_RES_RANGE {
+   ExtraInput = Ignore;
+   out ":SENS:RES:RANG?";
+   in "%i";
+}
+
 #######################################################
 # Set functions
 #######################################################
@@ -159,6 +166,11 @@ setRSENS {
 # /// Set remote sensing ON/OFF
 setRSENSAUTO {
    out ":SENS:RES:RANG:AUTO %s";
+}
+
+# /// Set resistance measurement range
+set_RES_RANGE {
+   out ":SENS:RES:RANG %i";
 }
 
 
