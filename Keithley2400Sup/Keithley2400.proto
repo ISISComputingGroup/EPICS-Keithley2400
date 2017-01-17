@@ -32,59 +32,80 @@ getID {
 }
 
 # /// Read the voltage from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
-getV {
+get_V {
    ExtraInput = Ignore;
    out ":READ?";
    in "%f,%*f,%*f";
 }
 
 # /// Read the current from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
-getI {
+get_I {
    ExtraInput = Ignore;
    out ":READ?";
    in "%*f,%f,%*f";
 }
 
+# /// Get the voltage compliance
+get_V_COMPLIANCE {
+   ExtraInput = Ignore;
+   out ":SENS:VOLT?";
+   in "%f";
+}
+
+# /// Get the current compliance
+get_I_COMPLIANCE {
+   ExtraInput = Ignore;
+   out ":SENS:CURR?";
+   in "%f";
+}
+
 # /// Read the resistance from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
-getR {
+get_R {
    ExtraInput = Ignore;
    out ":READ?";
    in "%*f,%*f,%f";
 }
 
 # /// Get the output mode (ON/OFF)
-getOUTP {
+get_OUTPUT_MODE {
    ExtraInput = Ignore;
    out ":OUTP?";
-   in "%s";
+   in "%{OFF|ON}";
 }
 
 # /// Get offset compensation (ON/OFF)
-getOCOM {
+get_OFFSET_MODE {
    ExtraInput = Ignore;
    out ":SENS:RES:OCOM?";
-   in "%s";
+   in "%{OFF|ON}";
 }
 
 # /// Get Ohms (resistance) mode AUTO/MANUAL
-getRMODE {
+get_RES_MODE {
    ExtraInput = Ignore;
    out ":SENS:RES:MODE?";
-   in "%s";
+   in "%{MAN|AUTO}";
 }
 
 # /// Get remote sensing ON/OFF
-getRSENS {
+get_SENSING_MODE {
    ExtraInput = Ignore;
    out ":SYST:RSEN?";
-   in "%s";
+   in "%{OFF|ON}";
 }
 
 # /// Get resistance sensor range AUTO/MANUAL
-getRSENSAUTO {
+get_RES_RANGE_MODE {
    ExtraInput = Ignore;
    out ":SENS:RES:RANG:AUTO?";
-   in "%s";
+   in "%i";
+}
+
+# /// Get resistance source mode
+get_SOURCE_MODE {
+   ExtraInput = Ignore;
+   out ":SOUR:FUNC?";
+   in "%{CURR|VOLT}";
 }
 
 # /// Get resistance measurement range
@@ -99,73 +120,33 @@ get_RES_RANGE {
 #######################################################
 
 # /// Reset the defaults
-setRST {
+set_RESET {
    out "*RST";
 }
 
 # /// Control the output (ON/OFF)
-setOUTP {
-   out ":OUTP %s";
-}
-
-# /// Control the source operating mode (VOLT/CURR)
-setSO_FUNC {
-   out ":SOUR:FUNC %s";
-}
-
-# /// Control the fixed sourcing mode (VOLT/CURR)
-setSO_MODE {
-   out ":SOUR:%s:MODE FIX";
-}
-
-# /// Control the sourcing range (VOLT/CURR, float range)
-setSO_RANG {
-   out ":SOUR:%(\$1.VAL)s:RANG %f";
-}
-
-# /// Control the sourcing level (VOLT/CURR, float level)
-setSO_LEV {
-   out ":SOUR:%(\$1.VAL)s:LEV %f";
-}
-
-# /// Control the sense operating mode (VOLT/CURR)
-setSE_FUNC {
-   out ":SENS:FUNC %s";
-}
-
-# /// Control the sensing compliance range (VOLT/CURR, float compliance range)
-setSE_PROT {
-   out ":SENS:%(\$1.VAL)s:PROT %f";
-}
-
-# /// Control the sensing measure range (VOLT/CURR, float range)
-setSE_RANG {
-   out ":SENS:%(\$1.VAL)s:RANG %f";
-}
-
-# /// Control the sensing auto range (VOLT/CURR, ON/OFF)
-setSE_RANGAUTO {
-   out ":SENS:%(\$1.VAL)s:RANG:AUTO %s";
+set_OUTPUT_MODE {
+   out ":OUTP %{OFF|ON}";
 }
 
 # /// Set offset compensation (ON/OFF)
-setOCOM {
-   out ":SENS:RES:OCOM %s";
+set_OFFSET_MODE {
+   out ":SENS:RES:OCOM %{OFF|ON}";
 }
 
 # /// Get Ohms (resistance) mode AUTO/MANUAL
-setRMODE {
-   out ":SENS:RES:MODE %s";
+set_RES_MODE {
+   out ":SENS:RES:MODE %{MAN|AUTO}";
 }
 
 # /// Set remote sensing ON/OFF
-setRSENS {
-   out ":SYST:RSEN %s";
+set_SENSING_MODE {
+   out ":SYST:RSEN %{OFF|ON}";
 }
 
-# /// Set remote sensing ON/OFF
-setRSENSAUTO {
-   out ":SENS:RES:RANG:AUTO %s";
+# /// Set resistance auto range ON/OFF
+set_RES_RANGE_MODE {
+   out ":SENS:RES:RANG:AUTO %i";
 }
 
 # /// Set resistance measurement range
@@ -173,6 +154,20 @@ set_RES_RANGE {
    out ":SENS:RES:RANG %i";
 }
 
+# /// Set resistance manual mode
+set_SOURCE_MODE {
+   out ":SOUR:FUNC %{CURR|VOLT}";
+}
+
+# /// Set current compliance
+set_I_COMPLIANCE {
+   out ":SENS:CURR %f";
+}
+
+# /// Set voltage compliance
+set_V_COMPLIANCE {
+   out ":SENS:VOLT %f";
+}
 
 #############################################################
 # Generic protocol
