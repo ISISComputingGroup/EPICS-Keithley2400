@@ -48,14 +48,14 @@ get_I {
 # /// Get the voltage compliance
 get_V_COMPLIANCE {
    ExtraInput = Ignore;
-   out ":SENS:VOLT?";
+   out ":SENS:VOLT:PROT?";
    in "%f";
 }
 
 # /// Get the current compliance
 get_I_COMPLIANCE {
    ExtraInput = Ignore;
-   out ":SENS:CURR?";
+   out ":SENS:CURR:PROT?";
    in "%f";
 }
 
@@ -70,14 +70,14 @@ get_R {
 get_OUTPUT_MODE {
    ExtraInput = Ignore;
    out ":OUTP?";
-   in "%{OFF|ON}";
+   in "%i";
 }
 
 # /// Get offset compensation (ON/OFF)
 get_OFFSET_MODE {
    ExtraInput = Ignore;
    out ":SENS:RES:OCOM?";
-   in "%{OFF|ON}";
+   in "%i";
 }
 
 # /// Get Ohms (resistance) mode AUTO/MANUAL
@@ -91,7 +91,7 @@ get_RES_MODE {
 get_SENSING_MODE {
    ExtraInput = Ignore;
    out ":SYST:RSEN?";
-   in "%{OFF|ON}";
+   in "%i";
 }
 
 # /// Get resistance sensor range AUTO/MANUAL
@@ -112,7 +112,7 @@ get_SOURCE_MODE {
 get_RES_RANGE {
    ExtraInput = Ignore;
    out ":SENS:RES:RANG?";
-   in "%i";
+   in "%f";
 }
 
 #######################################################
@@ -126,12 +126,12 @@ set_RESET {
 
 # /// Control the output (ON/OFF)
 set_OUTPUT_MODE {
-   out ":OUTP %{OFF|ON}";
+   out ":OUTP %i";
 }
 
 # /// Set offset compensation (ON/OFF)
 set_OFFSET_MODE {
-   out ":SENS:RES:OCOM %{OFF|ON}";
+   out ":SENS:RES:OCOM %i";
 }
 
 # /// Get Ohms (resistance) mode AUTO/MANUAL
@@ -141,7 +141,7 @@ set_RES_MODE {
 
 # /// Set remote sensing ON/OFF
 set_SENSING_MODE {
-   out ":SYST:RSEN %{OFF|ON}";
+   out ":SYST:RSEN %i";
 }
 
 # /// Set resistance auto range ON/OFF
@@ -151,7 +151,7 @@ set_RES_RANGE_MODE {
 
 # /// Set resistance measurement range
 set_RES_RANGE {
-   out ":SENS:RES:RANG %i";
+   out ":SENS:RES:RANG %f";
 }
 
 # /// Set resistance manual mode
@@ -161,21 +161,21 @@ set_SOURCE_MODE {
 
 # /// Set current compliance
 set_I_COMPLIANCE {
-   out ":SENS:CURR %f";
+   out ":SENS:CURR:PROT %f";
 }
 
 # /// Set voltage compliance
 set_V_COMPLIANCE {
-   out ":SENS:VOLT %f";
+   out ":SENS:VOLT:PROT %f";
 }
 
 #############################################################
 # Generic protocol
 ############################################################
 
-# /// Use this send any command and get back the response (max 39 chars).
+# /// Use this send any command and get back the response (max 60 chars).
 gen {
     ExtraInput = Ignore;
     out "%(\$1.VAL)s"; 
-    in "%39c"
+    in "%60c"
 }
