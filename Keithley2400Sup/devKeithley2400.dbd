@@ -13,4 +13,3 @@ device(stringin,  GPIB_IO, devSiKeithley2400,    "Keithley2400")
 device(stringout, GPIB_IO, devSoKeithley2400,    "Keithley2400")
 device(waveform,  GPIB_IO, devWfKeithley2400,    "Keithley2400")
 
-include "asyn.dbd"

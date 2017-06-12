@@ -14,7 +14,7 @@ devKeithley2400_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # Install .dbd and .db files
 DBD += devKeithley2400.dbd
-DB_INSTALLS += devKeithley2400.vdb
+DB += devKeithley2400.vdb
 DATA += Keithley2400.proto
 
 #=======================================
