@@ -16,7 +16,6 @@
 # General Settings
 ##################################################
 
-Terminator = "\r\n";
 ReplyTimeout = 1000;
 
 
