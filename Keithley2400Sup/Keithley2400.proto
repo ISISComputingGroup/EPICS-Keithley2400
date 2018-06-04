@@ -168,6 +168,22 @@ set_V_COMPLIANCE {
    out ":SENS:VOLT:PROT %f";
 }
 
+# /// Set source voltage
+set_V_SOURCE {
+   out ":SOUR:VOLT:LEV %f";
+   }
+
+# /// Read source voltage back
+get_V_SOURCE {
+   out ":SOUR:VOLT:LEV?";
+   in "%f";
+   }
+
+# /// Set auto ranging for source mode
+set_V_AUTO_RANGE {
+   out ":SOUR:VOLT:RANG:AUTO %d";
+   }
+
 #############################################################
 # Generic protocol
 ############################################################
