@@ -191,8 +191,18 @@ get_I_SOURCE {
    }
 
 # /// Set auto ranging for source mode
-set_V_AUTO_RANGE {
+set_V_SOURCE_AUTORANGE {
    out ":SOUR:VOLT:RANG:AUTO %d";
+   }
+
+# /// Set auto ranging status for source current
+set_I_SOURCE_AUTORANGE {
+   out ":SOUR:CURR:RANG:AUTO %d";
+   }
+
+# /// Get auto ranging status for source current
+get_I_SOURCE_AUTORANGE {
+   out ":SOUR:CURR:RANG:AUTO?";
    }
 
 #############################################################
