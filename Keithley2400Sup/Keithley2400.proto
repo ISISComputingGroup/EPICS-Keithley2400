@@ -184,7 +184,7 @@ set_I_SOURCE {
    out ":SOUR:CURR:LEV %f";
    }
 
-# /// Read source voltage back
+# /// Read source current back
 get_I_SOURCE {
    out ":SOUR:CURR:LEV?";
    in "%f";
