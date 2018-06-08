@@ -195,6 +195,12 @@ set_V_SOURCE_AUTORANGE {
    out ":SOUR:VOLT:RANG:AUTO %i";
    }
 
+# /// Set auto ranging for source mode
+get_V_SOURCE_AUTORANGE {
+   out ":SOUR:VOLT:RANG:AUTO?";
+   in "%i";
+   }
+
 # /// Set auto ranging status for source current
 set_I_SOURCE_AUTORANGE {
    out ":SOUR:CURR:RANG:AUTO %i";
