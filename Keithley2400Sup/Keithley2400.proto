@@ -234,6 +234,29 @@ get_V_SOURCE_RANGE {
    in "%g";
    }
 
+# /// Get range for source voltage
+get_V_MEAS_AUTORANGE {
+   out ":SENS:VOLT:RANG:AUTO?";
+   in "%i";
+   }
+
+# /// Set range for source voltage
+set_V_MEAS_AUTORANGE {
+   out ":SENS:VOLT:RANG:AUTO %i";
+   }
+
+# /// Get range for source current
+get_I_MEAS_AUTORANGE {
+   out ":SENS:CURR:RANG:AUTO?";
+   in "%i";
+   }
+
+# /// Set range for source current
+set_I_MEAS_AUTORANGE {
+   out ":SENS:CURR:RANG:AUTO %i";
+   }
+
+
 #############################################################
 # Generic protocol
 ############################################################
