@@ -223,6 +223,17 @@ get_I_SOURCE_RANGE {
    in "%f";
    }
 
+# /// Set range for source current
+set_V_SOURCE_RANGE {
+   out ":SOUR:VOLT:RANG %g";
+   }
+
+# /// Get range for source current
+get_V_SOURCE_RANGE {
+   out ":SOUR:VOLT:RANG?";
+   in "%g";
+   }
+
 #############################################################
 # Generic protocol
 ############################################################
