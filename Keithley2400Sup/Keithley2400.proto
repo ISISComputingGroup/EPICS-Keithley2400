@@ -212,6 +212,17 @@ get_I_SOURCE_AUTORANGE {
    in "%i";
    }
 
+# /// Set range for source current
+set_I_SOURCE_RANGE {
+   out ":SOUR:CURR:RANG %f";
+   }
+
+# /// Get range for source current
+get_I_SOURCE_RANGE {
+   out ":SOUR:CURR:RANG?";
+   in "%f";
+   }
+
 #############################################################
 # Generic protocol
 ############################################################
