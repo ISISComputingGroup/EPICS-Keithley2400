@@ -160,34 +160,34 @@ set_SOURCE_MODE {
 
 # /// Set current compliance
 set_I_COMPLIANCE {
-   out ":SENS:CURR:PROT %f";
+   out ":SENS:CURR:PROT %g";
 }
 
 # /// Set voltage compliance
 set_V_COMPLIANCE {
-   out ":SENS:VOLT:PROT %f";
+   out ":SENS:VOLT:PROT %g";
 }
 
-# /// Set source voltage
+# /// Set source level
 set_V_SOURCE {
-   out ":SOUR:VOLT:LEV %f";
+   out ":SOUR:VOLT:LEV %g";
    }
 
-# /// Read source voltage back
+# /// Read source level back
 get_V_SOURCE {
    out ":SOUR:VOLT:LEV?";
-   in "%f";
+   in "%g";
    }
 
 # /// Set source current
 set_I_SOURCE {
-   out ":SOUR:CURR:LEV %f";
+   out ":SOUR:CURR:LEV %g";
    }
 
 # /// Read source current back
 get_I_SOURCE {
    out ":SOUR:CURR:LEV?";
-   in "%f";
+   in "%g";
    }
 
 # /// Set auto ranging for source mode
@@ -214,13 +214,13 @@ get_I_SOURCE_AUTORANGE {
 
 # /// Set range for source current
 set_I_SOURCE_RANGE {
-   out ":SOUR:CURR:RANG %f";
+   out ":SOUR:CURR:RANG %g";
    }
 
 # /// Get range for source current
 get_I_SOURCE_RANGE {
    out ":SOUR:CURR:RANG?";
-   in "%f";
+   in "%g";
    }
 
 # /// Set range for source current
