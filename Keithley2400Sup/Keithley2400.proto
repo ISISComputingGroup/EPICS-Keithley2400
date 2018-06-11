@@ -256,6 +256,27 @@ set_I_MEAS_AUTORANGE {
    out ":SENS:CURR:RANG:AUTO %i";
    }
 
+# /// Set range for source current
+set_I_MEAS_RANGE {
+   out ":SENS:CURR:RANG %g";
+   }
+
+# /// Get range for source current
+get_I_MEAS_RANGE {
+   out ":SENS:CURR:RANG?";
+   in "%g";
+   }
+
+# /// Set range for source current
+set_V_MEAS_RANGE {
+   out ":SENS:VOLT:RANG %g";
+   }
+
+# /// Get range for source current
+get_V_MEAS_RANGE {
+   out ":SENS:VOLT:RANG?";
+   in "%g";
+   }
 
 #############################################################
 # Generic protocol
