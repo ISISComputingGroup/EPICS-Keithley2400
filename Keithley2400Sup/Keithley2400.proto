@@ -30,39 +30,39 @@ getID {
    in "%39c";
 }
 
-# /// Read the voltage from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
+# /// Read the voltage from the data string. Format is %g (V), %g (I), %g (R), %g (Timestamp), %g (Status)
 get_V {
    ExtraInput = Ignore;
-   out ":MEAS:VOLT?";
-   in "%f,%*f,%*f";
+   out ":READ?";
+   in "%g,%*g,%*g";
 }
 
-# /// Read the current from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
+# /// Read the current from the data string. Format is %g (V), %g (I), %g (R), %g (Timestamp), %g (Status)
 get_I {
    ExtraInput = Ignore;
-   out ":MEAS:CURR?";
-   in "%*f,%f,%*f";
+   out ":READ?";
+   in "%*g,%g,%*g";
 }
 
 # /// Get the voltage compliance
 get_V_COMPLIANCE {
    ExtraInput = Ignore;
    out ":SENS:VOLT:PROT?";
-   in "%f";
+   in "%g";
 }
 
 # /// Get the current compliance
 get_I_COMPLIANCE {
    ExtraInput = Ignore;
    out ":SENS:CURR:PROT?";
-   in "%f";
+   in "%g";
 }
 
-# /// Read the resistance from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
+# /// Read the resistance from the data string. Format is %g (V), %g (I), %g (R), %g (Timestamp), %g (Status)
 get_R {
    ExtraInput = Ignore;
-   out ":MEAS:RES?";
-   in "%*f,%*f,%f";
+   out ":READ?";
+   in "%*g,%*g,%g";
 }
 
 # /// Get the output mode (ON/OFF)
@@ -111,7 +111,7 @@ get_SOURCE_MODE {
 get_RES_RANGE {
    ExtraInput = Ignore;
    out ":SENS:RES:RANG?";
-   in "%f";
+   in "%g";
 }
 
 #######################################################
@@ -150,7 +150,7 @@ set_RES_RANGE_MODE {
 
 # /// Set resistance measurement range
 set_RES_RANGE {
-   out ":SENS:RES:RANG %f";
+   out ":SENS:RES:RANG %g";
 }
 
 # /// Set resistance manual mode
