@@ -126,6 +126,7 @@ set_RESET {
 # /// Control the output (ON/OFF)
 set_OUTPUT_MODE {
    out ":OUTP %i";
+   @init { get_OUTPUT_MODE; }
 }
 
 # /// Set offset compensation (ON/OFF)
@@ -156,6 +157,7 @@ set_RES_RANGE {
 # /// Set resistance manual mode
 set_SOURCE_MODE {
    out ":SOUR:FUNC %{CURR|VOLT}";
+   @init { get_SOURCE_MODE; }
 }
 
 # /// Set current compliance
@@ -191,25 +193,27 @@ get_I_SOURCE {
    }
 
 # /// Set auto ranging for source mode
-set_V_SOURCE_AUTORANGE {
-   out ":SOUR:VOLT:RANG:AUTO %i";
-   }
-
-# /// Set auto ranging for source mode
 get_V_SOURCE_AUTORANGE {
    out ":SOUR:VOLT:RANG:AUTO?";
    in "%i";
    }
 
-# /// Set auto ranging status for source current
-set_I_SOURCE_AUTORANGE {
-   out ":SOUR:CURR:RANG:AUTO %i";
+# /// Set auto ranging for source mode
+set_V_SOURCE_AUTORANGE {
+   out ":SOUR:VOLT:RANG:AUTO %i";
+   @init { get_V_SOURCE_AUTORANGE; }
    }
 
 # /// Get auto ranging status for source current
 get_I_SOURCE_AUTORANGE {
    out ":SOUR:CURR:RANG:AUTO?";
    in "%i";
+   }
+
+# /// Set auto ranging status for source current
+set_I_SOURCE_AUTORANGE {
+   out ":SOUR:CURR:RANG:AUTO %i";
+      @init { get_I_SOURCE_AUTORANGE; }
    }
 
 # /// Set range for source current
@@ -243,6 +247,7 @@ get_V_MEAS_AUTORANGE {
 # /// Set range for source voltage
 set_V_MEAS_AUTORANGE {
    out ":SENS:VOLT:RANG:AUTO %i";
+   @init { get_V_MEAS_AUTORANGE; }
    }
 
 # /// Get range for source current
@@ -254,6 +259,7 @@ get_I_MEAS_AUTORANGE {
 # /// Set range for source current
 set_I_MEAS_AUTORANGE {
    out ":SENS:CURR:RANG:AUTO %i";
+   @init { get_V_MEAS_AUTORANGE; }
    }
 
 # /// Set range for source current
