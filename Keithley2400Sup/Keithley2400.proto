@@ -30,39 +30,39 @@ getID {
    in "%39c";
 }
 
-# /// Read the voltage from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
+# /// Read the voltage from the data string. Format is %g (V), %g (I), %g (R), %g (Timestamp), %g (Status)
 get_V {
    ExtraInput = Ignore;
    out ":READ?";
-   in "%f,%*f,%*f";
+   in "%g,%*g,%*g";
 }
 
-# /// Read the current from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
+# /// Read the current from the data string. Format is %g (V), %g (I), %g (R), %g (Timestamp), %g (Status)
 get_I {
    ExtraInput = Ignore;
    out ":READ?";
-   in "%*f,%f,%*f";
+   in "%*g,%g,%*g";
 }
 
 # /// Get the voltage compliance
 get_V_COMPLIANCE {
    ExtraInput = Ignore;
    out ":SENS:VOLT:PROT?";
-   in "%f";
+   in "%g";
 }
 
 # /// Get the current compliance
 get_I_COMPLIANCE {
    ExtraInput = Ignore;
    out ":SENS:CURR:PROT?";
-   in "%f";
+   in "%g";
 }
 
-# /// Read the resistance from the data string. Format is %f (V), %f (I), %f (R), %f (Timestamp), %f (Status)
+# /// Read the resistance from the data string. Format is %g (V), %g (I), %g (R), %g (Timestamp), %g (Status)
 get_R {
    ExtraInput = Ignore;
    out ":READ?";
-   in "%*f,%*f,%f";
+   in "%*g,%*g,%g";
 }
 
 # /// Get the output mode (ON/OFF)
@@ -111,7 +111,7 @@ get_SOURCE_MODE {
 get_RES_RANGE {
    ExtraInput = Ignore;
    out ":SENS:RES:RANG?";
-   in "%f";
+   in "%g";
 }
 
 #######################################################
@@ -126,6 +126,7 @@ set_RESET {
 # /// Control the output (ON/OFF)
 set_OUTPUT_MODE {
    out ":OUTP %i";
+   @init { get_OUTPUT_MODE; }
 }
 
 # /// Set offset compensation (ON/OFF)
@@ -150,23 +151,138 @@ set_RES_RANGE_MODE {
 
 # /// Set resistance measurement range
 set_RES_RANGE {
-   out ":SENS:RES:RANG %f";
+   out ":SENS:RES:RANG %g";
 }
 
 # /// Set resistance manual mode
 set_SOURCE_MODE {
    out ":SOUR:FUNC %{CURR|VOLT}";
+   @init { get_SOURCE_MODE; }
 }
 
 # /// Set current compliance
 set_I_COMPLIANCE {
-   out ":SENS:CURR:PROT %f";
+   out ":SENS:CURR:PROT %g";
 }
 
 # /// Set voltage compliance
 set_V_COMPLIANCE {
-   out ":SENS:VOLT:PROT %f";
+   out ":SENS:VOLT:PROT %g";
 }
+
+# /// Set source level
+set_V_SOURCE {
+   out ":SOUR:VOLT:LEV %g";
+   }
+
+# /// Read source level back
+get_V_SOURCE {
+   out ":SOUR:VOLT:LEV?";
+   in "%g";
+   }
+
+# /// Set source current
+set_I_SOURCE {
+   out ":SOUR:CURR:LEV %g";
+   }
+
+# /// Read source current back
+get_I_SOURCE {
+   out ":SOUR:CURR:LEV?";
+   in "%g";
+   }
+
+# /// Set auto ranging for source mode
+get_V_SOURCE_AUTORANGE {
+   out ":SOUR:VOLT:RANG:AUTO?";
+   in "%i";
+   }
+
+# /// Set auto ranging for source mode
+set_V_SOURCE_AUTORANGE {
+   out ":SOUR:VOLT:RANG:AUTO %i";
+   @init { get_V_SOURCE_AUTORANGE; }
+   }
+
+# /// Get auto ranging status for source current
+get_I_SOURCE_AUTORANGE {
+   out ":SOUR:CURR:RANG:AUTO?";
+   in "%i";
+   }
+
+# /// Set auto ranging status for source current
+set_I_SOURCE_AUTORANGE {
+   out ":SOUR:CURR:RANG:AUTO %i";
+      @init { get_I_SOURCE_AUTORANGE; }
+   }
+
+# /// Set range for source current
+set_I_SOURCE_RANGE {
+   out ":SOUR:CURR:RANG %g";
+   }
+
+# /// Get range for source current
+get_I_SOURCE_RANGE {
+   out ":SOUR:CURR:RANG?";
+   in "%g";
+   }
+
+# /// Set range for source current
+set_V_SOURCE_RANGE {
+   out ":SOUR:VOLT:RANG %g";
+   }
+
+# /// Get range for source current
+get_V_SOURCE_RANGE {
+   out ":SOUR:VOLT:RANG?";
+   in "%g";
+   }
+
+# /// Get range for source voltage
+get_V_MEAS_AUTORANGE {
+   out ":SENS:VOLT:RANG:AUTO?";
+   in "%i";
+   }
+
+# /// Set range for source voltage
+set_V_MEAS_AUTORANGE {
+   out ":SENS:VOLT:RANG:AUTO %i";
+   @init { get_V_MEAS_AUTORANGE; }
+   }
+
+# /// Get range for source current
+get_I_MEAS_AUTORANGE {
+   out ":SENS:CURR:RANG:AUTO?";
+   in "%i";
+   }
+
+# /// Set range for source current
+set_I_MEAS_AUTORANGE {
+   out ":SENS:CURR:RANG:AUTO %i";
+   @init { get_V_MEAS_AUTORANGE; }
+   }
+
+# /// Set range for source current
+set_I_MEAS_RANGE {
+   out ":SENS:CURR:RANG %g";
+   }
+
+# /// Get range for source current
+get_I_MEAS_RANGE {
+   out ":SENS:CURR:RANG?";
+   in "%g";
+   }
+
+# /// Set range for source current
+set_V_MEAS_RANGE {
+   out ":SENS:VOLT:RANG %g";
+   }
+
+# /// Get range for source current
+get_V_MEAS_RANGE {
+   out ":SENS:VOLT:RANG?";
+   in "%g";
+   }
 
 #############################################################
 # Generic protocol
