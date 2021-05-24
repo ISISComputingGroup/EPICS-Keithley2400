@@ -33,14 +33,14 @@ getID {
 # /// Read the voltage from the data string. Format is %g (V), %g (I), %g (R), %g (Timestamp), %g (Status)
 get_V {
    ExtraInput = Ignore;
-   out ":READ?";
+   out "\$1";
    in "%g,%*g,%*g";
 }
 
 # /// Read the current from the data string. Format is %g (V), %g (I), %g (R), %g (Timestamp), %g (Status)
 get_I {
    ExtraInput = Ignore;
-   out ":READ?";
+   out "\$1";
    in "%*g,%g,%*g";
 }
 
@@ -61,7 +61,7 @@ get_I_COMPLIANCE {
 # /// Read the resistance from the data string. Format is %g (V), %g (I), %g (R), %g (Timestamp), %g (Status)
 get_R {
    ExtraInput = Ignore;
-   out ":READ?";
+   out "\$1";
    in "%*g,%*g,%g";
 }
 
